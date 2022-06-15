@@ -40,6 +40,10 @@
         margin-left: 20px;
     }
 
+    #content {
+        margin: 26px;
+    }
+    
     input {
         width: 400px;
     }

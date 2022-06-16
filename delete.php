@@ -6,7 +6,7 @@ header( "Content-Type: application/json; charset=utf-8" );
 require_once("model.php");
 
 // *************************************
-// DB ê⁄ë±
+// DB Êé•Á∂ö
 // *************************************
 $dbh = connectDb();
 

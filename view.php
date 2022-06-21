@@ -128,10 +128,10 @@ $( function(){
 
                             // 操作不可を解除
                             $("#content input").prop("disabled", false);
+                            dialog.dialog( "close" );
                         })
                         ;
 
-                        dialog.dialog( "close" );
 
                     }
                 },

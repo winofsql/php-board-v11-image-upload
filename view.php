@@ -88,51 +88,8 @@ $( function(){
                 { 
                     text: "OK",
                     click: function() {
-                        dialog = $( this );
-                        // **************************************
-                        // ファイルのアップロード
-                        // **************************************
-                        var formData = new FormData();
-
-                        // 画像データサイズの制限
-                        formData.append("MAX_FILE_SIZE", 1000000);
-
-                        // formData に画像ファイルを追加
-                        formData.append("image", $("#file").get(0).files[0]);
-                        formData.append("id", $("#id").val() );
-
-                        $.ajax({
-                            url: "./upload.php",
-                            type: "POST",
-                            data: formData,
-                            processData: false,  // jQuery がデータを処理しないよう指定
-                            contentType: false   // jQuery が contentType を設定しないよう指定
-                        })
-                        .done(function( data, textStatus ){
-                            console.log( "status:" + textStatus );
-                            console.log( "data:" + JSON.stringify(data, null, "    ") );
-                            
-                            if ( data.image.error != 0 ) {
-                                toastr.error(data.image.result);
-                            }
-                            
-                            $("#file").val("");
-                            $("#upload").prop("disabled", true);
-
-                        })
-                        .fail(function(jqXHR, textStatus, errorThrown ){
-                            console.log( "status:" + textStatus );
-                            console.log( "errorThrown:" + errorThrown );
-                        })
-                        .always(function() {
-
-                            // 操作不可を解除
-                            $("#content input").prop("disabled", false);
-                            dialog.dialog( "close" );
-                        })
-                        ;
-
-
+                        $( this ).dialog( "close" );
+                        file_upload();
                     }
                 },
                 {
@@ -148,6 +105,50 @@ $( function(){
 
 
 });
+
+function file_upload() {
+    // **************************************
+    // ファイルのアップロード
+    // **************************************
+    var formData = new FormData();
+
+    // 画像データサイズの制限
+    formData.append("MAX_FILE_SIZE", 1000000);
+
+    // formData に画像ファイルを追加
+    formData.append("image", $("#file").get(0).files[0]);
+    formData.append("id", $("#id").val() );
+
+    $.ajax({
+        url: "./upload.php",
+        type: "POST",
+        data: formData,
+        processData: false,  // jQuery がデータを処理しないよう指定
+        contentType: false   // jQuery が contentType を設定しないよう指定
+    })
+    .done(function( data, textStatus ){
+        console.log( "status:" + textStatus );
+        console.log( "data:" + JSON.stringify(data, null, "    ") );
+        
+        if ( data.image.error != 0 ) {
+            toastr.error(data.image.result);
+        }
+        
+        $("#file").val("");
+        $("#upload").prop("disabled", true);
+
+    })
+    .fail(function(jqXHR, textStatus, errorThrown ){
+        console.log( "status:" + textStatus );
+        console.log( "errorThrown:" + errorThrown );
+    })
+    .always(function() {
+
+        // 操作不可を解除
+        $("#content input").prop("disabled", false);
+    })
+    ;
+}
 
 </script>
 </head>

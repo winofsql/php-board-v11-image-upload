@@ -77,7 +77,6 @@ $( function(){
         //     return;
         // }
 
-        var dialog;
         $( "#dialog-message" ).dialog({
             modal: true,
             title: "ダイアログのタイトルです",
@@ -106,10 +105,11 @@ $( function(){
 
 });
 
+// *************************************
+// $.ajax ファイルアップロード
+// *************************************
 function file_upload() {
-    // **************************************
-    // ファイルのアップロード
-    // **************************************
+
     var formData = new FormData();
 
     // 画像データサイズの制限
@@ -205,7 +205,7 @@ function file_upload() {
 <iframe id="extend" src="control.php?page=init" name="myframe"></iframe>
 
 <div id="dialog-message" style='display:none;'>
-アップロードしますか?
+アップロードを開始してもよろしいですか?
 </div>
 </body>
 </html>
